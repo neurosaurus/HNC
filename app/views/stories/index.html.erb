@@ -1,7 +1,7 @@
 <h1>Hacker News (Clone) Stories </h1>
 
 <ul>
-<%= @stories.each do |story| %>
+<% @stories.each do |story| %>
   <li>
     <%= link_to story.title, story_path(story) %>
     <%= story.created_at%>
@@ -15,6 +15,9 @@
 <%= @stories.length %>
 
 
-
 <%= link_to 'Submit New Link', new_story_path %>
+<%= paginate @stories %>
+
+
+
 

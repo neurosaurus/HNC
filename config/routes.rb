@@ -1,7 +1,11 @@
 HNC::Application.routes.draw do
+
   root :to => 'stories#index'
 
-  resources :stories
+
+  resources :users do
+    resources :stories
+  end
 
 
   # The priority is based upon order of creation:

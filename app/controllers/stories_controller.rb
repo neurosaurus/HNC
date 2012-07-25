@@ -5,7 +5,7 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.all
+    @stories = Story.scoped.page(params[:page]).per(20)
   end
 
   def create
