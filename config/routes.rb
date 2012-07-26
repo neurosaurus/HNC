@@ -5,6 +5,13 @@ HNC::Application.routes.draw do
   root :to => 'stories#index'
   resources :users
 
+
+  resources :comments do
+    member do
+      post '/vote'
+    end
+  end
+
   resources :stories do
     member do
       post '/vote'
