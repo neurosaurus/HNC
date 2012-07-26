@@ -1,12 +1,19 @@
 <h1>Hacker News Clone</h1>
 
-<ul>
-  <li>
-    <%= link_to @story.title, story_path() %>
-    <%= @story.created_at%>
-    </li>
+<p>
+      <%= link_to @story.title, story_path() %>
+  <br/>
+      <%= @story.created_at%>
+  <br/>
+      <%= @story.body %>
+  <br/>
+</p>
 
-</ul>
+<%= button_to 'Edit Link', { :controller => :stories, :action => 'edit', :id => @story.id}, :method => :get%>
 
+<%= button_to "Delete Story", { :controller => :stories, :action => 'destroy', :id => @story.id}, :method => :delete %>
 
 <%= link_to 'Submit New Link', new_story_path %>
+<br/>
+<br/>
+
