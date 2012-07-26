@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @story = Story.new(params[:story])
+    @story = current_user.stories.new(params[:story])
     @story.save
 
     redirect_to stories_path
@@ -28,4 +28,17 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
   end
 
+  def vote
+    @story = Story.find(params[:id])
+    @vote = current_user.votes.build(:story => @story, :value => params[:vote][:value])
+
+    # current_user.votes.include?(@vote) == true   #build
+    # current_user.votes.include?(@vote) == false  #new
+
+    if @vote.save
+      ...
+    else
+      ...
+    end
+  end
 end

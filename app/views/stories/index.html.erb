@@ -4,12 +4,8 @@
 <% @stories.each do |story| %>
   <li>
     <%= link_to story.title, story_path(story) %>
-    <%= story.created_at%>
-    <%= @stories.length %>
-
     </li>
   <% end %>
-  <%= @stories.length %>
 
 </ul>
 <%= @stories.length %>

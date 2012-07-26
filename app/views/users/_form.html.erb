@@ -1,13 +1,24 @@
 <ul>
 <%= form_for(@user) do |f| %>
 
-  <li>
-  <%= f.label :name %> <%= f.text_field :name %>
-  </li>
-  <li>
-  <%= f.label :email %> <%= f.text_field :email %>
-  </li>
+  <div class="field">
+     <%= f.label :name %><br />
+     <%= f.text_field :name %>
+   </div>
+   <div class="field">
+     <%= f.label :email %><br />
+     <%= f.text_field :email %>
+   </div>
+   <div class="field">
+     <%= f.label :password %><br />
+     <%= f.text_field :password %>
+   </div>
+   <div class="field">
+     <%= f.label :password_confirmation %><br />
+     <%= f.text_field :password_confirmation %>
+   </div>
 
+  <div class="a
   <div class="actions">
     <%= f.submit %>
   </div>

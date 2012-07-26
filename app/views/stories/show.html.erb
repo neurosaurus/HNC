@@ -1,0 +1,12 @@
+<h1>Hacker News Clone</h1>
+
+<ul>
+  <li>
+    <%= link_to @story.title, story_path() %>
+    <%= @story.created_at%>
+    </li>
+
+</ul>
+
+
+<%= link_to 'Submit New Link', new_story_path %>

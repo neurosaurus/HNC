@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725024444) do
+ActiveRecord::Schema.define(:version => 20120726031336) do
 
   create_table "stories", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120725024444) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "link"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -27,8 +28,22 @@ ActiveRecord::Schema.define(:version => 20120725024444) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "password_digest"
+    t.string   "remember_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id",     :null => false
+    t.integer  "target_id",   :null => false
+    t.string   "target_type", :null => false
+    t.integer  "value",       :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "votes", ["target_type", "target_id"], :name => "index_votes_on_target_type_and_target_id"
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end
