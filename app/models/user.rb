@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
-  has_many    :stories # , :comments, :votes
+  has_many    :stories
+  has_many :comments
+  has_many :votes
 
   before_save { |user| user.email = email.downcase}
   before_save :create_remember_token

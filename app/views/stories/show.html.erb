@@ -10,10 +10,24 @@
 </p>
 
 <%= button_to 'Edit Link', { :controller => :stories, :action => 'edit', :id => @story.id}, :method => :get%>
-
 <%= button_to "Delete Story", { :controller => :stories, :action => 'destroy', :id => @story.id}, :method => :delete %>
+
+<%= button_to 'New Comment', { :controller => :comments, :action => 'create'}, :method => :post %>
+<%= link_to 'Submit New Comment', new_comment_path %>
 
 <%= link_to 'Submit New Link', new_story_path %>
 <br/>
 <br/>
+
+<ul>
+<% @comments.each do |comment| %>
+  <li>
+    <%= comment.body %> <%= comment.created_at%>
+    </li>
+<% end %>
+</ul>
+
+
+<%= flash[:notice]%>
+
 

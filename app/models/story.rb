@@ -3,12 +3,13 @@ class Story < ActiveRecord::Base
 
   belongs_to :user
   has_many :votes, :as => :target
+  has_many :comments
   validates :link, :format => {:with => /\A((http:\/\/)|(https:\/\/))/ }
   before_validation :ensure_link_has_prefix
   before_update :ensure_link_has_prefix
 
 
-  # protected
+  protected
 
   def ensure_link_has_prefix
     unless link =~ /((http:\/\/)|(https:\/\/))\S+/

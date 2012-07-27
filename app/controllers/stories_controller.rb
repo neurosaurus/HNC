@@ -17,13 +17,13 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    @story.body
+    @comments = Comment.where("story_id = ?", params[:id])
   end
 
   def destroy
     @story = Story.find(params[:id])
     @story.destroy
-    redirect_to stories_path, :flash => {:notice => "Story '#{@story.title}' was deleted." }
+    redirect_to stories_path, :flash => {:notice => "Story '#{@story.title}' was successfully deleted." }
   end
 
   def edit
@@ -46,11 +46,14 @@ class StoriesController < ApplicationController
 
   def update
     @story = Story.find(params[:id])
-    if @story.update_attributes(params[:story])
-      redirect_to :action => 'show', :id => @story
+    if Time.now - @story.created_at > 1000 * 60 * 15
+      if @story.update_attributes(params[:story])
+        redirect_to :action => 'show', :id => @story
+      else
+        render :action => 'edit'
+      end
     else
-#      @user = User.find(:all)
-      render :action => 'edit'
+      redirect_to story_path, :flash => {:notice => 'I\'m sorry, you cannot edit stories after 15 minutes.'}
     end
   end
 

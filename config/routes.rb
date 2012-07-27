@@ -1,10 +1,13 @@
 HNC::Application.routes.draw do
 
-  resources :votes
-
   root :to => 'stories#index'
-  resources :users
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy'
 
+  resources :users, only: [:new, :create, :destroy]
+  resources :votes, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :comments do
     member do
@@ -17,13 +20,6 @@ HNC::Application.routes.draw do
       post '/vote'
     end
   end
-
-
-  resources :sessions, only: [:new, :create, :destory]
-
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy'
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,19 @@
+<h1>Hacker News Clone</h1>
+
+<p>
+      <%= link_to @comment.title, comment_path() %>
+  <br/>
+      <%= @comment.created_at%>
+  <br/>
+      <%= @comment.body %>
+  <br/>
+</p>
+
+<%= button_to 'Edit Comment', { :controller => :comments, :action => 'edit', :id => @comment.id}, :method => :get%>
+
+<%= button_to "Delete Comment", { :controller => :comments, :action => 'destroy', :id => @comment.id}, :method => :delete %>
+
+<%= link_to 'Submit New Comment', new_comment_path %>
+<br/>
+<br/>
+
